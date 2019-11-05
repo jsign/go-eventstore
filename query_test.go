@@ -84,12 +84,14 @@ var (
 			return v >= 3.6 && v <= 4.0 && v != 3.9, nil
 		}), resIdx: []int{1, 3}},
 
-		queryTest{name: "SortAscString", query: Where("Meta.TotalReads").Ge(30).OrderBy("Author"), resIdx: []int{2, 3, 4}},
-		queryTest{name: "SortAscInt", query: Where("Meta.TotalReads").Ge(1).OrderBy("Meta.TotalReads"), resIdx: []int{0, 1, 2, 3, 4}},
-		queryTest{name: "SortAscFloat", query: Where("Meta.TotalReads").Ge(1).OrderBy("Meta.Rating"), resIdx: []int{0, 1, 2, 3, 4}},
-		queryTest{name: "SortDescString", query: Where("Meta.TotalReads").Ge(30).OrderByDesc("Author"), resIdx: []int{4, 3, 2}},
-		queryTest{name: "SortDescInt", query: Where("Meta.TotalReads").Ge(1).OrderByDesc("Meta.TotalReads"), resIdx: []int{4, 3, 2, 1, 0}},
-		queryTest{name: "SortDescFloat", query: Where("Meta.TotalReads").Ge(1).OrderByDesc("Meta.Rating"), resIdx: []int{4, 3, 2, 1, 0}},
+		queryTest{name: "SortAscString", query: Where("Meta.TotalReads").Gt(20).OrderBy("Author"), resIdx: []int{2, 3, 4}, ordered: true},
+		queryTest{name: "SortDescString", query: Where("Meta.TotalReads").Gt(20).OrderByDesc("Author"), resIdx: []int{4, 3, 2}, ordered: true},
+
+		queryTest{name: "SortAscInt", query: Where("Meta.TotalReads").Gt(10).OrderBy("Meta.TotalReads"), resIdx: []int{1, 2, 3, 4}, ordered: true},
+		queryTest{name: "SortDescInt", query: Where("Meta.TotalReads").Gt(10).OrderByDesc("Meta.TotalReads"), resIdx: []int{4, 3, 2, 1}, ordered: true},
+
+		queryTest{name: "SortAscFloat", query: Where("Meta.TotalReads").Gt(10).OrderBy("Meta.Rating"), resIdx: []int{1, 2, 3, 4}, ordered: true},
+		queryTest{name: "SortDescFloat", query: Where("Meta.TotalReads").Gt(10).OrderByDesc("Meta.Rating"), resIdx: []int{4, 3, 2, 1}, ordered: true},
 	}
 )
 

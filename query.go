@@ -144,7 +144,7 @@ func (t *Txn) Find(res interface{}, q *Query) error {
 				wrongField = true
 				return false
 			}
-			res, err := compare(fieldI, fieldJ)
+			res, err := compare(fieldI.Interface(), fieldJ.Interface())
 			if err != nil {
 				cantCompare = true
 				return false
